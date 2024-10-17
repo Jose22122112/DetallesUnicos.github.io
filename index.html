@@ -141,11 +141,54 @@
         .product-description {
             font-size: 0.9rem;
             color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .about-us {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .about-us h2 {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .contact-item {
+            background-color: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            min-width: 200px;
+        }
+        
+        .contact-item h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .map-container {
+            margin-top: 2rem;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
         }
         
         .testimonials {
-            background-color: var(--secondary-color);
-            color: white;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             padding: 4rem 2rem;
         }
         
@@ -156,10 +199,11 @@
         }
         
         .testimonial-card {
-            background-color: rgba(255,255,255,0.1);
+            background-color: white;
             padding: 2rem;
             border-radius: 15px;
             text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .testimonial-image {
@@ -227,52 +271,122 @@
     </header>
     
     <section id="productos" class="products">
-        <h2>Nuestros Productos Estrella</h2>
+        <h2>Nuestro Catálogo de Productos</h2>
         <div class="product-grid">
             <div class="product-card">
                 <picture>
-                    <source srcset="IMAGEN1.webp" type="image/webp">
-                    <img src="IMAGEN1.jpg" alt="Tazas Personalizadas" class="product-image">
+                    <source srcset="IMAGEN 1" type="image/webp">
+                    <img src="img/IMAGEN 1..webp" alt="Tazas Personalizadas" class="product-image">
                 </picture>
                 <div class="product-info">
                     <h3 class="product-title">Tazas Mágicas</h3>
                     <p class="product-description">Tazas que revelan mensajes especiales con bebidas calientes.</p>
+                    <p class="product-price">S/ 12.50</p>
                 </div>
             </div>
             <div class="product-card">
                 <picture>
-                    <source srcset="IMAGEN2.webp" type="image/webp">
-                    <img src="IMAGEN2.jpg" alt="Álbumes de Fotos" class="product-image">
+                    <img src="img/IAMGENE 5.jpg" alt="Álbumes de Fotos" class="product-image">
                 </picture>
                 <div class="product-info">
                     <h3 class="product-title">Álbumes Interactivos</h3>
                     <p class="product-description">Álbumes con realidad aumentada para revivir tus recuerdos.</p>
+                    <p class="product-price">S/ 14.99</p>
                 </div>
             </div>
             <div class="product-card">
                 <picture>
-                    <source srcset="IMAGEN3.webp" type="image/webp">
-                    <img src="IMAGEN3.jpg" alt="Joyería Personalizada" class="product-image">
+                    <img src="img/IMAGEN 6.webp" alt="Joyería Personalizada" class="product-image">
                 </picture>
                 <div class="product-info">
                     <h3 class="product-title">Joyería con Historia</h3>
                     <p class="product-description">Piezas únicas que cuentan tu historia personal.</p>
+                    <p class="product-price">S/ 13.75</p>
                 </div>
             </div>
             <div class="product-card">
                 <picture>
-                    <source srcset="IMAGEN4.webp" type="image/webp">
-                    <img src="IMAGEN4.jpg" alt="Cuadros Personalizados" class="product-image">
+                      <img src="img/IMAGEN 7.jpg" alt="Cuadros Personalizados" class="product-image">
                 </picture>
                 <div class="product-info">
                     <h3 class="product-title">Cuadros Luminosos</h3>
                     <p class="product-description">Arte que se ilumina con tus recuerdos más preciados.</p>
+                    <p class="product-price">S/ 15.00</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <picture>
+                        <img src="img/IMAGEN 8.webp" alt="Llaveros Personalizados" class="product-image">
+                </picture>
+                <div class="product-info">
+                    <h3 class="product-title">Llaveros Únicos</h3>
+                    <p class="product-description">Llaveros grabados con diseños exclusivos.</p>
+                    <p class="product-price">S/ 10.50</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <picture>
+                           <img src="img/IMAGEN 9.jpg" alt="Cojines Decorativos" class="product-image">
+                </picture>
+                <div class="product-info">
+                    <h3 class="product-title">Cojines Decorativos</h3>
+                    <p class="product-description">Cojines con diseños personalizados para tu hogar.</p>
+                    <p class="product-price">S/ 14.25</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- ... (resto del código del body permanece igual) ... -->
+    <section id="nosotros" class="about-us">
+        <h2>Sobre Nosotros</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>Correo Electrónico</h3>
+                <p>detallesunicos@gmail.com</p>
+            </div>
+            <div class="contact-item">
+                <h3>Teléfono</h3>
+                <p>+51 916887785</p>
+            </div>
+            <div class="contact-item">
+                <h3>WhatsApp</h3>
+                <p>+51 916887785</p>
+            </div>
+        </div>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31202.30546102792!2d-75.70376531839411!3d-11.421851834225408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x910e960e92edbc0f%3A0xb73f534346521d38!2sTarma!5e0!3m2!1ses-419!2spe!4v1634524262269!5m2!1ses-419!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>Lo Que Dicen Nuestros Clientes</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <img src="/api/placeholder/80/80" alt="Cliente 1" class="testimonial-image">
+                <p>"Los regalos personalizados de Detalles Únicos siempre sorprenden a mis seres queridos. ¡Son increíbles!"</p>
+                <h4>María L.</h4>
+            </div>
+            <div class="testimonial-card">
+                <img src="/api/placeholder/80/80" alt="Cliente 2" class="testimonial-image">
+                <p>"La calidad de los productos y la atención al cliente son excepcionales. ¡Totalmente recomendado!"</p>
+                <h4>Carlos R.</h4>
+            </div>
+            <div class="testimonial-card">
+                <img src="/api/placeholder/80/80" alt="Cliente 3" class="testimonial-image">
+                <p>"Gracias a Detalles Únicos, pude regalar algo verdaderamente especial a mi pareja. ¡Quedó encantada!"</p>
+                <h4>Ana S.</h4>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <p>&copy; 2024 Detalles Únicos - Creando Magia en Cada Regalo</p>
+        <div class="social-icons">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="WhatsApp">📱</a>
+        </div>
+    </footer>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
@@ -297,6 +411,24 @@
             opacity: 0,
             duration: 1,
             stagger: 0.2
+        });
+
+        gsap.from('.contact-item', {
+            scrollTrigger: {
+                trigger: '.about-us',
+                start: 'top center'
+            },
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2
+        });
+
+        document.querySelector('a[href="#nosotros"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#nosotros').scrollIntoView({
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>
