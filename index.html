@@ -22,14 +22,23 @@
             font-family: 'Poppins', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
+            scroll-behavior: smooth;
         }
         
         .header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             padding: 1rem 0;
-            position: relative;
-            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .header.scrolled {
+            background: rgba(255, 107, 107, 0.9);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
         .nav {
@@ -68,7 +77,25 @@
         
         .hero {
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 8rem 2rem 4rem;
+            background: url('https://source.unsplash.com/random/1600x900/?gift') no-repeat center center/cover;
+            position: relative;
+            color: white;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
         
         .hero h1 {
@@ -230,6 +257,28 @@
             margin: 0 0.5rem;
         }
         
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+        }
+        
         @media (max-width: 768px) {
             .nav {
                 flex-direction: column;
@@ -263,19 +312,22 @@
                 <a href="#contacto">Contacto</a>
             </div>
         </nav>
-        <div class="hero">
+    </header>
+    
+    <section id="inicio" class="hero">
+        <div class="hero-content">
             <h1>Crea Recuerdos Mágicos</h1>
             <p>Transforma tus momentos especiales en regalos únicos y personalizados que perdurarán para siempre.</p>
             <button class="cta-button">Personaliza Tu Regalo</button>
         </div>
-    </header>
+    </section>
     
     <section id="productos" class="products">
         <h2>Nuestro Catálogo de Productos</h2>
         <div class="product-grid">
             <div class="product-card">
                 <picture>
-                    <source srcset="IMAGEN 1" type="image/webp">
+ 
                     <img src="img/IMAGEN 1..webp" alt="Tazas Personalizadas" class="product-image">
                 </picture>
                 <div class="product-info">
@@ -286,7 +338,7 @@
             </div>
             <div class="product-card">
                 <picture>
-                    <img src="img/IAMGENE 5.jpg" alt="Álbumes de Fotos" class="product-image">
+                    <img src="img/IMAGEN 2.jpg" alt="Álbumes de Fotos" class="product-image">
                 </picture>
                 <div class="product-info">
                     <h3 class="product-title">Álbumes Interactivos</h3>
@@ -306,7 +358,7 @@
             </div>
             <div class="product-card">
                 <picture>
-                      <img src="img/IMAGEN 7.jpg" alt="Cuadros Personalizados" class="product-image">
+                    <img src="img/IMAGEN 7.jpg" alt="Cuadros Personalizados" class="product-image">
                 </picture>
                 <div class="product-info">
                     <h3 class="product-title">Cuadros Luminosos</h3>
@@ -316,7 +368,7 @@
             </div>
             <div class="product-card">
                 <picture>
-                        <img src="img/IMAGEN 8.webp" alt="Llaveros Personalizados" class="product-image">
+                    <img src="img/IMAGEN 8.webp" alt="Llaveros Personalizados" class="product-image">
                 </picture>
                 <div class="product-info">
                     <h3 class="product-title">Llaveros Únicos</h3>
@@ -326,7 +378,7 @@
             </div>
             <div class="product-card">
                 <picture>
-                           <img src="img/IMAGEN 9.jpg" alt="Cojines Decorativos" class="product-image">
+                    <img src="img/IMAGEN 9.jpg" alt="Cojines Decorativos" class="product-image">
                 </picture>
                 <div class="product-info">
                     <h3 class="product-title">Cojines Decorativos</h3>
@@ -349,7 +401,7 @@
                 <p>+51 916887785</p>
             </div>
             <div class="contact-item">
-                <h3>WhatsApp</h3>
+                <h3<h3>WhatsApp</h3>
                 <p>+51 916887785</p>
             </div>
         </div>
@@ -362,17 +414,17 @@
         <h2>Lo Que Dicen Nuestros Clientes</h2>
         <div class="testimonial-grid">
             <div class="testimonial-card">
-                <img src="/api/placeholder/80/80" alt="Cliente 1" class="testimonial-image">
+                <img src="img/CLIENTE 1.jpg" alt="Cliente 1" class="testimonial-image">
                 <p>"Los regalos personalizados de Detalles Únicos siempre sorprenden a mis seres queridos. ¡Son increíbles!"</p>
                 <h4>María L.</h4>
             </div>
             <div class="testimonial-card">
-                <img src="/api/placeholder/80/80" alt="Cliente 2" class="testimonial-image">
+                <img src="img/CLIENTE 2.jpg" alt="Cliente 2" class="testimonial-image">
                 <p>"La calidad de los productos y la atención al cliente son excepcionales. ¡Totalmente recomendado!"</p>
                 <h4>Carlos R.</h4>
             </div>
             <div class="testimonial-card">
-                <img src="/api/placeholder/80/80" alt="Cliente 3" class="testimonial-image">
+                <img src="img/CLIENTE 3.jpg" alt="Cliente 3" class="testimonial-image">
                 <p>"Gracias a Detalles Únicos, pude regalar algo verdaderamente especial a mi pareja. ¡Quedó encantada!"</p>
                 <h4>Ana S.</h4>
             </div>
@@ -388,9 +440,12 @@
         </div>
     </footer>
 
+    <a href="#" class="back-to-top" aria-label="Volver arriba">⬆️</a>
+
     <script>
         gsap.registerPlugin(ScrollTrigger);
         
+        // Animación de las tarjetas de productos
         gsap.from('.product-card', {
             scrollTrigger: {
                 trigger: '.products',
@@ -402,6 +457,7 @@
             stagger: 0.2
         });
         
+        // Animación de las tarjetas de testimonios
         gsap.from('.testimonial-card', {
             scrollTrigger: {
                 trigger: '.testimonials',
@@ -413,6 +469,7 @@
             stagger: 0.2
         });
 
+        // Animación de los elementos de contacto
         gsap.from('.contact-item', {
             scrollTrigger: {
                 trigger: '.about-us',
@@ -424,10 +481,38 @@
             stagger: 0.2
         });
 
-        document.querySelector('a[href="#nosotros"]').addEventListener('click', function(e) {
+        // Funcionalidad de la barra de navegación fija
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Funcionalidad del botón "Volver arriba"
+        const backToTopButton = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', (e) => {
             e.preventDefault();
-            document.querySelector('#nosotros').scrollIntoView({
-                behavior: 'smooth'
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Desplazamiento suave para los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
     </script>
