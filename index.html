@@ -292,6 +292,86 @@
                 font-size: 2.5rem;
             }
         }
+
+        /* Estilos para las nuevas funcionalidades */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        #cart {
+            position: fixed;
+            right: 20px;
+            top: 80px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 300px;
+            display: none;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .payment-methods {
+            margin-top: 20px;
+        }
+
+        .payment-method {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -310,6 +390,9 @@
                 <a href="#productos">Productos</a>
                 <a href="#nosotros">Nosotros</a>
                 <a href="#contacto">Contacto</a>
+                <a href="#" onclick="showModal('loginModal')">Iniciar Sesión</a>
+                <a href="#" onclick="showModal('registerModal')">Registrarse</a>
+                <a href="#" onclick="toggleCart()">Carrito (<span id="cartCount">0</span>)</a>
             </div>
         </nav>
     </header>
@@ -327,13 +410,13 @@
         <div class="product-grid">
             <div class="product-card">
                 <picture>
- 
                     <img src="img/IMAGEN 1..webp" alt="Tazas Personalizadas" class="product-image">
                 </picture>
                 <div class="product-info">
                     <h3 class="product-title">Tazas Mágicas</h3>
                     <p class="product-description">Tazas que revelan mensajes especiales con bebidas calientes.</p>
                     <p class="product-price">S/ 12.50</p>
+                    <button class="cta-button" onclick="addToCart('Tazas Mágicas', 12.50)">Agregar al Carrito</button>
                 </div>
             </div>
             <div class="product-card">
@@ -344,6 +427,7 @@
                     <h3 class="product-title">Álbumes Interactivos</h3>
                     <p class="product-description">Álbumes con realidad aumentada para revivir tus recuerdos.</p>
                     <p class="product-price">S/ 14.99</p>
+                    <button class="cta-button" onclick="addToCart('Álbumes Interactivos', 14.99)">Agregar al Carrito</button>
                 </div>
             </div>
             <div class="product-card">
@@ -354,6 +438,7 @@
                     <h3 class="product-title">Joyería con Historia</h3>
                     <p class="product-description">Piezas únicas que cuentan tu historia personal.</p>
                     <p class="product-price">S/ 13.75</p>
+                    <button  class="cta-button" onclick="addToCart('Joyería con Historia', 13.75)">Agregar al Carrito</button>
                 </div>
             </div>
             <div class="product-card">
@@ -364,6 +449,7 @@
                     <h3 class="product-title">Cuadros Luminosos</h3>
                     <p class="product-description">Arte que se ilumina con tus recuerdos más preciados.</p>
                     <p class="product-price">S/ 15.00</p>
+                    <button class="cta-button" onclick="addToCart('Cuadros Luminosos', 15.00)">Agregar al Carrito</button>
                 </div>
             </div>
             <div class="product-card">
@@ -374,6 +460,7 @@
                     <h3 class="product-title">Llaveros Únicos</h3>
                     <p class="product-description">Llaveros grabados con diseños exclusivos.</p>
                     <p class="product-price">S/ 10.50</p>
+                    <button class="cta-button" onclick="addToCart('Llaveros Únicos', 10.50)">Agregar al Carrito</button>
                 </div>
             </div>
             <div class="product-card">
@@ -384,6 +471,7 @@
                     <h3 class="product-title">Cojines Decorativos</h3>
                     <p class="product-description">Cojines con diseños personalizados para tu hogar.</p>
                     <p class="product-price">S/ 14.25</p>
+                    <button class="cta-button" onclick="addToCart('Cojines Decorativos', 14.25)">Agregar al Carrito</button>
                 </div>
             </div>
         </div>
@@ -401,7 +489,7 @@
                 <p>+51 916887785</p>
             </div>
             <div class="contact-item">
-                <h3<h3>WhatsApp</h3>
+                <h3>WhatsApp</h3>
                 <p>+51 916887785</p>
             </div>
         </div>
@@ -441,6 +529,62 @@
     </footer>
 
     <a href="#" class="back-to-top" aria-label="Volver arriba">⬆️</a>
+
+    <!-- Modal de Inicio de Sesión -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form onsubmit="return false;">
+                <div class="form-group">
+                    <label for="loginEmail">Correo Electrónico:</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Contraseña:</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button class="cta-button" onclick="login()">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Registro -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Registrarse</h2>
+            <form onsubmit="return false;">
+                <div class="form-group">
+                    <label for="registerName">Nombre:</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Correo Electrónico:</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Contraseña:</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <button class="cta-button" onclick="register()">Registrarse</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Carrito de Compras -->
+    <div id="cart">
+        <h2>Carrito de Compras</h2>
+        <div id="cartItems"></div>
+        <p>Total: S/ <span id="cartTotal">0.00</span></p>
+        <h3>Métodos de Pago:</h3>
+        <select id="paymentMethod">
+            <option value="yape">Yape</option>
+            <option value="tarjeta">Tarjeta</option>
+            <option value="paypal">PayPal</option>
+        </select>
+        <button class="cta-button" onclick="checkout()">Pagar</button>
+    </div>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
@@ -515,6 +659,88 @@
                 });
             });
         });
+
+        // Funciones para login, registro y carrito
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function login() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            // Aquí iría la lógica de autenticación
+            alert(`Inicio de sesión simulado para ${email}`);
+            closeModal('loginModal');
+        }
+
+        function register() {
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            // Aquí iría la lógica de registro
+            alert(`Registro simulado para ${name} (${email})`);
+            closeModal('registerModal');
+        }
+
+        function toggleCart() {
+            const cart = document.getElementById('cart');
+            cart.style.display = cart.style.display === 'none' ? 'block' : 'none';
+        }
+
+        let cartItems = [];
+        let cartTotal = 0;
+
+        function addToCart(name, price) {
+            cartItems.push({ name, price });
+            cartTotal += price;
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsElement = document.getElementById('cartItems');
+            const cartTotalElement = document.getElementById('cartTotal');
+            const cartCountElement = document.getElementById('cartCount');
+
+            cartItemsElement.innerHTML = '';
+            cartItems.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    ${item.name} - S/ ${item.price.toFixed(2)}
+                    <button onclick="removeFromCart(${index})">Eliminar</button>
+                `;
+                cartItemsElement.appendChild(itemElement);
+            });
+
+            cartTotalElement.textContent = cartTotal.toFixed(2);
+            cartCountElement.textContent = cartItems.length;
+        }
+
+        function removeFromCart(index) {
+            cartTotal -= cartItems[index].price;
+            cartItems.splice(index, 1);
+            updateCart();
+        }
+
+        function checkout() {
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            alert(`Pago de S/ ${cartTotal.toFixed(2)} procesado con ${paymentMethod}`);
+            cartItems = [];
+            cartTotal = 0;
+            updateCart();
+            toggleCart();
+        }
+
+        // Cerrar modales al hacer clic fuera de ellos
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = "none";
+            }
+        }
     </script>
 </body>
 </html>
